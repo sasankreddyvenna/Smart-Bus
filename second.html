@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus on Wheels</title>
+    <link rel="shortcut icon" href="https://images.collegedunia.com/public/college_data/images/logos/1615969516Screenshot20210317134244.png" type="image/x-icon">
+    <style>
+        body {
+            font-family: "Arial", sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .logo-bar {
+            background-color: #8f3e3e;
+            width: 100;
+
+        }
+
+        .college-logo {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+        }
+
+        .profile-container {
+            max-width: 600px;
+            margin: 20px auto 50px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+
+        .profile-photo {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            margin: 0 auto 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-details {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .profile-details h2 {
+            font-size: 32px;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        .profile-details p {
+            margin: 5px 0;
+            font-size: 18px;
+        }
+
+        .profile-buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+        }
+
+        .profile-button {
+            flex: 1;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            margin: 0 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .profile-button:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 768px) {
+            .profile-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="logo-bar">
+        <img src="formlogo.png" alt="College Logo" class="college-logo">
+    </div>
+
+    <div class="profile-container">
+        <img src="https://img.freepik.com/free-icon/man_318-233556.jpg?w=360" alt="Student Photo" class="profile-photo">
+        <div class="profile-details">
+            <h2>Rohith Vishnu Kumar</h2>
+            <p><strong>Student ID:</strong> 22BCE8755</p>
+            <p><strong>Course:</strong> Computer Science</p>
+            <p><strong>Batch:</strong> 2022</p>
+            <p><strong>Email:</strong> rohith.22bce8755@vitapstudent.ac.in</p>
+            <p><strong>Phone:</strong>8247650717</p>
+            <p>Day Scholar</p>
+        </div>
+        <div class="profile-buttons">
+            <button class="profile-button" onclick="redirectTo('third.html')">Track your bus</button>
+            <button class="profile-button" onclick="redirectTo('gateway.html')">Payments</button>
+            <button class="profile-button" onclick="redirectTo('receipts.html')">Payment receipts</button>
+            <button class="profile-button" onclick="redirectTo('attendance.html')">Attendance</button>
+        </div>
+    </div>
+
+    <script>
+        function redirectTo(url) {
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Campus on Wheels</title>
+    <style>
+
+        
+        .logo-bar {
+            background-color: #8f3e3e;
+            height: 80px;
+
+        }
+
+        /* Styling for the university logo */
+        .university-logo {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        .college-logo {
+            width: 150px;
+
+            object-fit: contain;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            margin: 40px 0;
+        }
+
+        .receipts-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            border-radius: 8px;
+        }
+
+        .receipt {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+
+        .receipt h2 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .receipt p {
+            margin: 5px 0;
+        }
+
+        .download-link {
+            display: inline-block;
+            margin-top: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .download-link:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="logo-bar">
+        <img src="formlogo.png" alt="College Logo" class="college-logo">
+    </div>
+    <h1>University Fee Receipts</h1>
+    <div class="receipts-container" id="receipts-container">
+        <!-- Receipts will be dynamically added here using JavaScript -->
+    </div>
+    <script>
+        // Sample receipt data (you can fetch real data from a server or database)
+        const receiptsData = [
+            { id: 1, amount: 1000, date: "2023-08-01", downloadLink: "receipts/1.pdf" },
+            { id: 2, amount: 1500, date: "2023-08-02", downloadLink: "receipts/2.pdf" },
+            // Add more receipt data here if needed
+        ];
+
+        // Function to create and display receipt elements
+        function displayReceipts() {
+            const container = document.getElementById("receipts-container");
+
+            receiptsData.forEach((receipt) => {
+                const receiptElement = document.createElement("div");
+                receiptElement.classList.add("receipt");
+
+                receiptElement.innerHTML = `
+          <h2>Receipt ID: ${receipt.id}</h2>
+          <p>Amount Paid: ₹${receipt.amount}</p>
+          <p>Paid on: ${receipt.date}</p>
+          <a class="download-link" href="${receipt.downloadLink}" download>Download Receipt</a>
+        `;
+
+                container.appendChild(receiptElement);
+            });
+        }
+
+        // Call the function to display receipts when the page loads
+        document.addEventListener("DOMContentLoaded", displayReceipts);
+    </script>
+</body>
+
+</html>

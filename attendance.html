@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus on Wheels</title>
+    <link rel="shortcut icon" href="https://images.collegedunia.com/public/college_data/images/logos/1615969516Screenshot20210317134244.png" type="image/x-icon">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f6f6f6;
+        }
+
+        /* Full border around the page */
+        /* .bordered-page {
+      border: 10px solid #000;
+    } */
+
+        /* Main container */
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            background-color: #8f3e3e;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Calendar container */
+        .calendar-container {
+            margin: 20px auto;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Calendar styling (from previous responses) */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+        }
+
+        .day {
+            text-align: center;
+            border: 1px solid #ccc;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .day:hover {
+            background-color: #f0f0f0;
+        }
+
+        .present {
+            background-color: green;
+            color: white;
+        }
+
+        .absent {
+            background-color: red;
+            color: white;
+        }
+
+        .percentage {
+            margin-top: 10px;
+            color: rgb(152, 18, 18);
+            font-weight: bold;
+        }
+
+        @keyframes fadeInAnimation {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bordered-page">
+        <div class="container">
+            <div class="header">
+                <h1>Bus Attendance</h1>
+            </div>
+            <!DOCTYPE html>
+            <html lang="en">
+
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Calendar App with Attendance</title>
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                    }
+
+                    .calendar {
+                        width: 300px;
+                        margin: 0 auto;
+                        border: 1px solid #ccc;
+                        border-radius: 5px;
+                        padding: 10px;
+                        animation: fadeInAnimation 1s;
+                    }
+
+                    .header {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        margin-bottom: 10px;
+                    }
+
+                    .button {
+                        background-color: transparent;
+                        border: none;
+                        cursor: pointer;
+                        font-size: 18px;
+                    }
+
+                    .days {
+                        display: grid;
+                        grid-template-columns: repeat(7, 1fr);
+                    }
+
+                    .day {
+                        text-align: center;
+                        border: 1px solid #ccc;
+                        padding: 10px;
+                        cursor: pointer;
+                        transition: background-color 0.2s;
+                    }
+
+                    .day:hover {
+                        background-color: #f0f0f0;
+                    }
+
+                    .present {
+                        background-color: green;
+                        color: white;
+                    }
+
+                    .absent {
+                        background-color: red;
+                        color: white;
+                    }
+
+                    .percentage {
+                        margin-top: 10px;
+                    }
+
+                    @keyframes fadeInAnimation {
+                        from {
+                            opacity: 0;
+                        }
+
+                        to {
+                            opacity: 1;
+                        }
+                    }
+                </style>
+            </head>
+
+            <body>
+                <div class="calendar" id="app">
+                    <div class="header">
+                        <button class="button" id="prevBtn">&lt;</button>
+                        <h2 id="monthYear"></h2>
+                        <button class="button" id="nextBtn">&gt;</button>
+                    </div>
+                    <div class="days" id="days"></div>
+                    <div class="percentage" id="attendancePercentage"></div>
+                </div>
+                <script>
+                    // Calendar app using ES6 classes and template
+                    class CalendarApp {
+                        constructor() {
+                            this.currentDate = new Date();
+                            this.currentMonth = this.currentDate.getMonth();
+                            this.currentYear = this.currentDate.getFullYear();
+                            this.monthNames = [
+                                "January", "February", "March",
+                                "April", "May", "June",
+                                "July", "August", "September",
+                                "October", "November", "December"
+                            ];
+                            this.daysContainer = document.getElementById("days");
+                            this.prevBtn = document.getElementById("prevBtn");
+                            this.nextBtn = document.getElementById("nextBtn");
+                            this.monthYear = document.getElementById("monthYear");
+                            this.attendancePercentage = document.getElementById("attendancePercentage");
+
+                            this.presentDays = new Set();
+                            this.totalDays = 0;
+
+                            this.prevBtn.addEventListener("click", () => this.changeMonth(-1));
+                            this.nextBtn.addEventListener("click", () => this.changeMonth(1));
+
+                            this.updateCalendar();
+                        }
+
+                        updateCalendar() {
+                            this.daysContainer.innerHTML = "";
+
+                            const firstDayOfMonth = new Date(this.currentYear, this.currentMonth, 1);
+                            const lastDayOfMonth = new Date(this.currentYear, this.currentMonth + 1, 0);
+                            const daysInMonth = lastDayOfMonth.getDate();
+                            const startDayIndex = firstDayOfMonth.getDay();
+
+                            this.monthYear.textContent = `${this.monthNames[this.currentMonth]} ${this.currentYear}`;
+
+                            for (let i = 0; i < startDayIndex; i++) {
+                                this.daysContainer.appendChild(this.createDayElement(""));
+                            }
+
+                            for (let day = 1; day <= daysInMonth; day++) {
+                                this.daysContainer.appendChild(this.createDayElement(day));
+                            }
+                        }
+
+                        createDayElement(day) {
+                            const newDay = document.createElement("div");
+                            newDay.textContent = day;
+                            newDay.classList.add("day");
+                            newDay.addEventListener("click", () => this.toggleAttendance(newDay, day));
+                            return newDay;
+                        }
+
+                        toggleAttendance(dayElement, day) {
+                            if (this.presentDays.has(day)) {
+                                this.presentDays.delete(day);
+                                dayElement.classList.remove("present");
+                            } else {
+                                this.presentDays.add(day);
+                                dayElement.classList.add("present");
+                            }
+
+                            this.calculateAttendancePercentage();
+                        }
+
+                        calculateAttendancePercentage() {
+                            this.totalDays = this.daysContainer.querySelectorAll(".day:not(:empty)").length;
+                            const presentCount = this.presentDays.size;
+                            const percentage = (presentCount / this.totalDays) * 100;
+                            this.attendancePercentage.textContent = `Attendance: ${percentage.toFixed(2)}%`;
+                        }
+
+                        changeMonth(delta) {
+                            this.currentMonth += delta;
+                            if (this.currentMonth < 0) {
+                                this.currentMonth = 11;
+                                this.currentYear--;
+                            } else if (this.currentMonth > 11) {
+                                this.currentMonth = 0;
+                                this.currentYear++;
+                            }
+                            this.daysContainer.classList.add("fadeOutAnimation");
+                            setTimeout(() => {
+                                this.updateCalendar();
+                                this.daysContainer.classList.remove("fadeOutAnimation");
+                            }, 500);
+                        }
+                    }
+
+                    const app = new CalendarApp();
+                </script>
+            </body>
+
+            </html>
